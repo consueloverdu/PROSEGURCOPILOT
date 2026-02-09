@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía IA Generativa - PROSEGUR</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    * { -webkit-tap-highlight-color: transparent; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #1f2937; }
+    ::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 3px; }
+  </style>
+</head>
+<body class="bg-gray-950">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    const CONFIG = {
+      titulo: "Guía IA Generativa",
+      subtitulo: "PROSEGUR",
+      descripcion: "10 casos de uso prácticos · Microsoft Copilot para transformar RRHH",
+      duracion: "TALLER",
+      icono: "🛡️",
+
+      stats: [
+        { valor: "10", etiqueta: "CASOS" },
+        { valor: "6", etiqueta: "ÁREAS" },
+        { valor: "1", etiqueta: "HERRAMIENTA" }
+      ],
+
+      fases: [
+        {
+          id: 1,
+          icono: "👥",
+          titulo: "Casos 1-6: RRHH Especializado",
+          dinamicas: 6,
+          descripcion: "C&B, Nómina, Selección, Formación, PRL, RRLL",
+          color: "from-emerald-600 to-teal-500",
+          contenido: [
+            {
+              id: 1,
+              titulo: "Optimización del Plan de Igualdad",
+              descripcionCorta: "Redacción y justificación con IA",
+              area: "C&B (Compensación y Beneficios)",
+              situacion: "Ayuda en la redacción y la justificación de los componentes del plan de igualdad. Se pueden pasar datos, pedir comparaciones, y elaborar un texto justificativo del mismo. Posteriormente, se podría exportar a un documento Word.",
+              outputEsperado: "Plan de Igualdad completo con análisis, diagnóstico, medidas y cronograma, listo para presentar.",
+              herramientas: [
+                {
+                  nombre: "Microsoft Copilot",
+                  icono: "🚀",
+                  descripcion: "Ideal para documentos largos y complejos que requieren razonamiento legal. Integrado con Microsoft 365.",
+                  pasos: [
+                    "Recopila los datos de plantilla necesarios",
+                    "Comparte el contexto normativo aplicable",
+                    "Solicita el análisis de brechas",
+                    "Pide las medidas con justificación",
+                    "Genera el documento final estructurado en Word"
+                  ]
+                }
+              ],
+              prompts: [
+                {
+                  titulo: "Prompt para Plan de Igualdad",
+                  contenido: `Actúa como experto en Igualdad, RRHH y normativa española (Ley Orgánica 3/2007, RD 901/2020 y RD 902/2020). Elabora un Plan de Igualdad completo que incluya:
+
+• Análisis de brechas salariales, segregación horizontal y vertical
+• Distribución de categorías profesionales, acceso a formación, promoción y corresponsabilidad
+• Identificación de riesgos e incumplimientos
+• Marco legal aplicable
+• Objetivos estratégicos y operativos
+• Medidas obligatorias y voluntarias con justificación
+• Indicadores de seguimiento, KPIs, responsables, cronograma
+• Análisis complementario del absentismo para detectar patrones que impacten la igualdad
+
+Genera un documento estructurado y profesional.`
+                }
+              ],
+              tips: [
+                "Asegúrate de tener datos actualizados de plantilla",
+                "Verifica siempre la normativa vigente",
+                "Involucra a la comisión de igualdad en la revisión",
+                "Documenta todas las fuentes de datos utilizadas",
+                "Usa Copilot en Word para exportar directamente el documento"
+              ]
+            },
+            {
+              id: 2,
+              titulo: "Análisis de Patrones de Absentismo",
+              descripcionCorta: "Identificar patrones y tendencias",
+              area: "Administración y Nómina",
+              situacion: "Pasar un informe de absentismo y solicitar que identifique patrones de absentistas (por empresa, por Dpto, por manager, por día, por periodos - navidad, semana santa, fines de semana, etc...)",
+              outputEsperado: "Diagnóstico con insights accionables, clasificación de empleados por nivel de riesgo y recomendaciones.",
+              herramientas: [
+                {
+                  nombre: "Microsoft Copilot",
+                  icono: "🚀",
+                  descripcion: "Para analizar archivos Excel de absentismo, detectar patrones y generar visualizaciones en Excel.",
+                  pasos: [
+                    "Exporta los datos de absentismo a Excel",
+                    "Abre Copilot en Excel y sube el archivo",
+                    "Solicita análisis por las dimensiones deseadas",
+                    "Pide visualizaciones de los patrones",
+                    "Genera el informe con conclusiones"
+                  ]
+                }
+              ],
+              prompts: [
+                {
+                  titulo: "Prompt para análisis de absentismo",
+                  contenido: `Actúa como analista experto en RRHH, datos de absentismo y normativa laboral. A partir del informe de ausencias proporcionado, identifica y explica patrones de absentismo por:
+
+DIMENSIONES DE ANÁLISIS:
+• Empresa, departamento, manager
+• Tipo de ausencia, día de la semana
+• Temporadas críticas (Navidad, Semana Santa, verano)
+• Puentes festivos, fines de semana largos
+• Reincidencias individuales
+
+ENTREGABLES:
+• Detectar casos relevantes por frecuencia, duración, tendencia creciente o coincidencia con festivos
+• Clasificar empleados según nivel de riesgo
+• Señalar posibles ausencias estratégicas
+• Elaborar diagnóstico con insights accionables
+
+[PEGAR O ADJUNTAR DATOS DE ABSENTISMO]`
+                }
+              ],
+              tips: [
+                "Anonimiza los datos antes de compartir con la IA",
+                "Compara con benchmarks del sector",
+                "Cruza con otros datos (clima, eventos, etc.)",
+                "Actualiza el análisis periódicamente",
+                "Usa Copilot en Excel para crear gráficos dinámicos automáticamente"
+              ]
+            },
+            {
+              id: 3,
+              titulo: "Valoración de CVs (Cribado)",
+              descripcionCorta: "Análisis objetivo de candidatos",
+              area: "Selección",
+              situacion: "En base a un puesto de trabajo definido, analizar uno o varios CVs recibidos, y valorarlos con un criterio objetivo en qué grado se ajusta el candidato (ej: al 30%, al 50%, al 90% etc...), y elaborar una tabla resumen que clasifique los candidatos según N criterios.",
+              outputEsperado: "Tabla comparativa de candidatos con puntuación por criterios, % de ajuste al puesto y recomendación.",
+              herramientas: [
+                {
+                  nombre: "Microsoft Copilot",
+                  icono: "🚀",
+                  descripcion: "Para análisis detallado de CVs con criterios ponderados. Permite procesar múltiples documentos.",
+                  pasos: [
+                    "Define los requisitos obligatorios y deseables del puesto",
+                    "Establece los criterios de puntuación",
+                    "Sube los CVs a analizar",
+                    "Solicita la evaluación comparativa",
+                    "Genera la tabla ranking en Excel o Word"
+                  ]
+                }
+              ],
+              prompts: [
+                {
+                  titulo: "Prompt para cribado de CVs",
+                  contenido: `Actúa como técnico de selección experto en análisis por competencias. Para el puesto de "Supervisor de Servicios de Seguridad" en Prosegur:
+
+FASE ELIMINATORIA - Verificar requisitos obligatorios:
+• TIP vigente
+• 3 años experiencia
+• Carnet tipo B
+• Disponibilidad turnos rotativos
+• Residencia Madrid <30km
+
+FASE DE PUNTUACIÓN - Evaluar candidatos aptos según criterios ponderados (100 puntos totales):
+1. Experiencia y formación en seguridad (40 puntos)
+2. Competencias técnicas y conocimientos (25 puntos)
+3. Habilidades de liderazgo y gestión (20 puntos)
+4. Idiomas y comunicación (10 puntos)
+5. Disponibilidad y compromiso (5 puntos)
+
+ENTREGABLE:
+Genera tabla con: nombre, edad, ubicación, cumplimiento requisitos, puntuación criterios, total puntos, clasificación, % ajuste, banda salarial y decisión final.
+
+[ADJUNTAR CVs A EVALUAR]`
+                }
+              ],
+              tips: [
+                "Define criterios objetivos y medibles",
+                "Usa siempre los mismos criterios para todos los candidatos",
+                "Verifica manualmente los candidatos mejor puntuados",
+                "Documenta el proceso para cumplimiento normativo",
+                "Exporta la tabla a Excel para filtrar y ordenar fácilmente"
+              ]
+            },
+            {
+              id: 4,
+              titulo: "Generación de Contenido de Formación",
+              descripcionCorta: "Crear cursos y material didáctico",
+              area: "Formación",
+              situacion: "Generar contenido de formación de un tema cualquiera. Generar al menos el índice de un curso y luego ampliarlo pidiendo que desarrolle el contenido. Siempre supervisado por un experto.",
+              outputEsperado: "Curso completo con módulos, contenido teórico, ejemplos prácticos, ejercicios y evaluación.",
+              herramientas: [
+                {
+                  nombre: "Microsoft Copilot",
+                  icono: "🚀",
+                  descripcion: "Para generar contenido formativo estructurado. Integración directa con PowerPoint para presentaciones.",
+                  pasos: [
+                    "Define el tema, audiencia y duración del curso",
+                    "Genera primero el índice completo",
+                    "Desarrolla módulo por módulo",
+                    "Añade ejemplos y ejercicios",
+                    "Crea el cuestionario de evaluación",
+                    "Genera las presentaciones en PowerPoint con Copilot"
+                  ]
+                }
+              ],
+              prompts: [
+                {
+                  titulo: "Prompt para crear curso",
+                  contenido: `Actúa como diseñador de formación experto. Elabora el índice completo y desarrollo detallado de un curso, incluyendo:
+
+PROCESO ITERATIVO:
+
+FASE 1 - Generar índice completo:
+• Información general del curso
+• Módulos y lecciones
+• Duración estimada por módulo
+• Método de evaluación
+
+FASE 2 - Desarrollo módulo por módulo:
+• Objetivos de aprendizaje
+• Contenido teórico detallado
+• Ejemplos prácticos (2-3 por módulo)
+• Ejercicios guiados y autónomos
+• Material complementario
+• Cuestionario evaluación
+• Resumen puntos clave
+
+CRITERIOS:
+• Contenido didáctico con ejemplos reales
+• Adaptado al nivel de la audiencia
+• Enfocado en aprendizaje activo
+• Progresión lógica de dificultad
+
+TEMA DEL CURSO: [ESPECIFICAR]
+AUDIENCIA: [ESPECIFICAR]
+DURACIÓN TOTAL: [ESPECIFICAR]`
+                }
+              ],
+              tips: [
+                "Valida siempre el contenido con un experto en la materia",
+                "Incluye casos prácticos reales de Prosegur",
+                "Adapta el lenguaje al nivel de la audiencia",
+                "Actualiza el contenido periódicamente",
+                "Usa Copilot en PowerPoint para crear slides automáticamente"
+              ]
+            },
+            {
+              id: 5,
+              titulo: "Prevención de Riesgos Laborales (PRL)",
+              descripcionCorta: "Evaluación y optimización de riesgos",
+              area: "PRL",
+              situacion: "Partir de la base de la descripción de los riesgos asociados a una posición, y dando detalles sobre el servicio, quitar el contenido que sobra. Además, se puede utilizar como asesor para revisar los potenciales riesgos que no se han tomado en cuenta o para redactar riesgos asociados a nuevas posiciones.",
+              outputEsperado: "Evaluación de riesgos optimizada con medidas preventivas, EPIs y plan de formación.",
+              herramientas: [
+                {
+                  nombre: "Microsoft Copilot",
+                  icono: "🚀",
+                  descripcion: "Para análisis exhaustivo de riesgos y generación de documentación PRL. Ideal para documentos largos.",
+                  pasos: [
+                    "Proporciona la descripción del puesto y servicio",
+                    "Comparte la evaluación de riesgos actual (si existe)",
+                    "Solicita revisión y optimización",
+                    "Pide identificación de riesgos faltantes",
+                    "Genera el documento final en Word"
+                  ]
+                }
+              ],
+              prompts: [
+                {
+                  titulo: "Prompt para evaluación PRL",
+                  contenido: `Actúa como experto en Prevención de Riesgos Laborales. Revisar, optimizar o crear desde cero una evaluación completa de riesgos laborales.
+
+PROCESO:
+1. Análisis comparativo de evaluaciones existentes
+2. Eliminación de contenido irrelevante
+3. Detección de riesgos faltantes
+4. Auditoría exhaustiva por categorías:
+   • Riesgos físicos
+   • Riesgos químicos
+   • Riesgos biológicos
+   • Riesgos ergonómicos
+   • Riesgos psicosociales
+   • Riesgos de seguridad
+   • Riesgos higiénicos
+5. Creación estructurada con matrices de probabilidad y severidad
+6. Definición de medidas preventivas concretas, EPIs específicos, planes de acción
+7. Formación obligatoria y criterios de calidad
+
+NORMATIVA APLICABLE:
+• Ley 31/1995 PRL
+• Ley 5/2014 Seguridad Privada (si aplica)
+• Normativa autonómica cuando corresponda
+
+PUESTO A EVALUAR: [ESPECIFICAR]
+DESCRIPCIÓN DEL SERVICIO: [ESPECIFICAR]`
+                }
+              ],
+              tips: [
+                "Siempre verifica con el técnico de PRL",
+                "Actualiza cuando cambien las condiciones del puesto",
+                "Incluye riesgos psicosociales, a menudo olvidados",
+                "Documenta todas las fuentes normativas",
+                "Exporta a Word con formato profesional"
+              ]
+            },
+            {
+              id: 6,
+              titulo: "Agente/Consultas con Base de Datos",
+              descripcionCorta: "Asistente para consultas de convenio y datos",
+              area: "Relaciones Laborales",
+              situacion: "Crear un agente gratuito con enlace al convenio de seguridad (BOE) y/o a otro convenio del grupo (ej: Contact Center) y elaborar un prompt que sea capaz de contestar a dudas que tengan los técnicos sobre el convenio.",
+              outputEsperado: "Agente capaz de responder consultas sobre el convenio colectivo y extraer información de bases de datos de RRHH.",
+              herramientas: [
+                {
+                  nombre: "Microsoft Copilot",
+                  icono: "🚀",
+                  descripcion: "Para crear un asistente especializado en el convenio colectivo. Puede trabajar con PDFs y documentos extensos.",
+                  pasos: [
+                    "Descarga el convenio del BOE en PDF",
+                    "Sube el documento a Copilot",
+                    "Define las instrucciones del sistema",
+                    "Prueba con consultas frecuentes",
+                    "Comparte el método con el equipo de RRLL"
+                  ]
+                }
+              ],
+              prompts: [
+                {
+                  titulo: "Prompt para agente de convenio",
+                  contenido: `Actúa como experto en relaciones laborales y convenios colectivos. Tienes acceso al Convenio Colectivo de Seguridad Privada (BOE-A-2022-21175).
+
+Tu función es:
+• Responder consultas de los técnicos de RRLL sobre el convenio
+• Citar siempre el artículo específico que aplica
+• Explicar la interpretación en lenguaje claro
+• Indicar si hay jurisprudencia relevante
+• Alertar sobre posibles conflictos de interpretación
+
+Si la consulta requiere:
+• Análisis de datos de RRHH: proporciona la query SQL necesaria
+• Interpretación compleja: recomienda consultar con asesoría jurídica
+• Información no disponible en el convenio: indica claramente
+
+CONSULTA: [ESPECIFICAR]`
+                }
+              ],
+              tips: [
+                "Mantén actualizado el convenio cuando haya modificaciones",
+                "Documenta las interpretaciones para crear jurisprudencia interna",
+                "Escala a asesoría jurídica los casos complejos",
+                "Registra las consultas más frecuentes para formar al equipo",
+                "Guarda las consultas frecuentes como plantillas reutilizables"
+              ]
+            }
+          ]
+        },
+        {
+          id: 2,
+          icono: "🎯",
+          titulo: "Casos 7-10: Transversales",
+          dinamicas: 4,
+          descripcion: "Productividad y comunicación para todas las áreas",
+          color: "from-blue-600 to-cyan-500",
+          contenido: [
+            {
+              id: 7,
+              titulo: "Chatbot de Atención al Empleado",
+              descripcionCorta: "Asistente virtual para consultas de RRHH",
+              area: "Comunicación Interna / RRHH / Atención al Empleado",
+              situacion: "Implementar un chatbot conversacional que resuelva dudas frecuentes de los empleados sobre políticas internas, beneficios, procedimientos administrativos y consultas básicas de nómina. El chatbot puede estar conectado a documentos internos (políticas, manuales, FAQs) y escalar a un agente humano cuando la consulta exceda su capacidad.",
+              outputEsperado: "Chatbot funcional capaz de responder consultas de empleados 24/7, con escalado automático a técnicos de RRHH cuando sea necesario.",
+              herramientas: [
+                {
+                  nombre: "Microsoft Copilot",
+                  icono: "🚀",
+                  descripcion: "Para crear el asistente conversacional con capacidad de entender contexto y mantener conversaciones naturales. Integrado con Teams y Outlook.",
+                  pasos: [
+                    "Configura Copilot con las políticas de RRHH de Prosegur",
+                    "Sube los documentos internos (manual del empleado, FAQs, políticas)",
+                    "Define las instrucciones del sistema con el tono y límites",
+                    "Prueba con consultas reales de empleados",
+                    "Itera y mejora según feedback",
+                    "Despliega en Teams para acceso de toda la plantilla"
+                  ]
+                }
+              ],
+              prompts: [
+                {
+                  titulo: "Prompt base para el chatbot",
+                  contenido: `Actúa como asistente virtual experto en políticas de RRHH de Prosegur. Tu función es resolver consultas de empleados de forma clara, empática y precisa. Debes:
+
+• Responder preguntas frecuentes sobre: vacaciones, permisos, nóminas, beneficios sociales, formación disponible, políticas de teletrabajo, prevención de riesgos
+• Consultar la base documental proporcionada antes de responder
+• Usar lenguaje cercano pero profesional
+• Cuando no tengas certeza o la consulta sea compleja (reclamaciones, casos disciplinarios, situaciones personales delicadas), indicar amablemente que se derivará a un técnico de RRHH
+• Registrar el tipo de consulta para análisis posterior de temas recurrentes
+• Ofrecer siempre la opción de hablar con una persona si el empleado lo prefiere
+
+Capacidades adicionales:
+• Multiidioma (español, portugués, inglés) según país del empleado
+• Integración con calendario para citas con RRHH
+• Seguimiento de tickets abiertos`
+                }
+              ],
+              tips: [
+                "Define claramente los límites del chatbot desde el inicio",
+                "Incluye siempre una opción de escalado a humano",
+                "Revisa periódicamente las consultas más frecuentes para mejorar respuestas",
+                "Mantén actualizada la base documental del chatbot",
+                "Aprovecha la integración con Microsoft Teams para despliegue"
+              ]
+            },
+            {
+              id: 8,
+              titulo: "Resumen Inteligente de Reuniones",
+              descripcionCorta: "Genera actas estructuradas automáticamente",
+              area: "Todas las áreas / Productividad / Gestión del Conocimiento",
+              situacion: "A partir de la transcripción o grabación de una reunión, generar automáticamente un resumen estructurado que incluya los puntos clave, decisiones tomadas, tareas asignadas y próximos pasos. Permite mantener trazabilidad de acuerdos y facilita la comunicación a personas que no asistieron.",
+              outputEsperado: "Acta de reunión estructurada con resumen ejecutivo, decisiones, tareas asignadas con responsables y fechas, y próximos pasos.",
+              herramientas: [
+                {
+                  nombre: "Microsoft Copilot",
+                  icono: "🚀",
+                  descripcion: "Integrado nativamente con Microsoft Teams. Genera resúmenes automáticos de reuniones con transcripción.",
+                  pasos: [
+                    "Activa Copilot en tu reunión de Teams",
+                    "La transcripción se genera automáticamente",
+                    "Al finalizar, solicita el resumen estructurado",
+                    "Revisa y ajusta el resultado",
+                    "Comparte directamente desde Teams o exporta a Word"
+                  ]
+                }
+              ],
+              prompts: [
+                {
+                  titulo: "Prompt para acta de reunión",
+                  contenido: `Actúa como secretario ejecutivo experto en documentación de reuniones corporativas. A partir de la transcripción proporcionada, elabora:
+
+ESTRUCTURA DEL RESUMEN:
+1. Datos de la reunión: fecha, duración, asistentes, objetivo
+2. Resumen ejecutivo: síntesis en 3-5 líneas de lo tratado
+3. Puntos principales discutidos: temas abordados con las conclusiones de cada uno
+4. Decisiones tomadas: listado claro de acuerdos alcanzados
+5. Tareas asignadas: tabla con responsable, acción, fecha límite
+6. Temas pendientes: asuntos que quedaron sin resolver o para próxima reunión
+7. Próximos pasos: acciones inmediatas y fecha de seguimiento
+
+CRITERIOS DE CALIDAD:
+• Identificar y atribuir intervenciones relevantes a cada participante
+• Distinguir entre opiniones, propuestas y decisiones firmes
+• Detectar posibles puntos de fricción o desacuerdo
+• Señalar compromisos con fechas concretas
+• Formato exportable a Word o integrable en herramientas de gestión de proyectos
+
+[PEGAR TRANSCRIPCIÓN AQUÍ]`
+                }
+              ],
+              tips: [
+                "Activa siempre Copilot al inicio de las reuniones importantes",
+                "Revisa el resumen antes de enviarlo - la IA puede malinterpretar contexto",
+                "Usa siempre el mismo formato para facilitar el seguimiento",
+                "Comparte el acta en las primeras 24h tras la reunión",
+                "Las tareas pueden enviarse directamente a Planner o To-Do"
+              ]
+            },
+            {
+              id: 9,
+              titulo: "Investigación y Análisis con Notebook",
+              descripcionCorta: "Research profundo sobre temas estratégicos",
+              area: "Estrategia / Innovación / Inteligencia Competitiva / Formación",
+              situacion: "Realizar una investigación profunda sobre un tema estratégico (tendencias del sector seguridad, nuevas regulaciones, tecnologías emergentes, benchmarking competitivo) y documentarla en un notebook interactivo que permita explorar fuentes, visualizar datos y actualizar conclusiones.",
+              outputEsperado: "Documento interactivo actualizable que sirva como base de conocimiento sobre el tema investigado.",
+              herramientas: [
+                {
+                  nombre: "Microsoft Copilot",
+                  icono: "🚀",
+                  descripcion: "Con capacidad de búsqueda web y análisis de múltiples fuentes. Integración con OneNote para notebooks.",
+                  pasos: [
+                    "Define las preguntas clave de investigación",
+                    "Usa Copilot para buscar información actualizada",
+                    "Verifica las fuentes citadas",
+                    "Profundiza con preguntas de seguimiento",
+                    "Compila los hallazgos en OneNote",
+                    "Genera resúmenes y conexiones entre fuentes"
+                  ]
+                }
+              ],
+              prompts: [
+                {
+                  titulo: "Prompt para investigación estratégica",
+                  contenido: `Actúa como analista de inteligencia estratégica. Realiza una investigación exhaustiva sobre el tema asignado siguiendo esta metodología:
+
+FASE 1 - Definición del alcance:
+• Clarificar objetivos de la investigación y preguntas clave a responder
+• Delimitar fuentes a consultar (informes sectoriales, prensa especializada, publicaciones académicas, normativa)
+
+FASE 2 - Recopilación de información:
+• Búsqueda sistemática en fuentes primarias y secundarias
+• Extracción de datos cuantitativos relevantes
+• Identificación de expertos y voces autorizadas en el tema
+
+FASE 3 - Análisis y síntesis:
+• Organización de hallazgos por categorías temáticas
+• Identificación de tendencias, patrones y señales débiles
+• Contraste de perspectivas cuando existan visiones divergentes
+• Evaluación de fiabilidad de las fuentes
+
+FASE 4 - Documentación:
+• Estructura navegable con índice interactivo
+• Secciones con texto explicativo, citas relevantes y enlaces a fuentes
+• Visualizaciones de datos cuando aplique (gráficos, tablas comparativas)
+• Conclusiones y recomendaciones accionables
+• Anexo con bibliografía completa y recursos adicionales
+
+TEMA A INVESTIGAR: [ESPECIFICAR]`
+                }
+              ],
+              tips: [
+                "Define claramente el alcance antes de empezar",
+                "Usa múltiples fuentes para contrastar información",
+                "Documenta siempre las fuentes para poder verificar",
+                "Actualiza el notebook periódicamente con nueva información",
+                "Usa OneNote para organizar la investigación en secciones"
+              ]
+            },
+            {
+              id: 10,
+              titulo: "Creación de Contenido Musical Corporativo",
+              descripcionCorta: "Letras y jingles para comunicación interna",
+              area: "Comunicación Interna / Employer Branding / Eventos Corporativos",
+              situacion: "Generar letras de canciones o jingles para campañas internas, eventos corporativos, vídeos de onboarding o iniciativas de employer branding. La IA puede crear letras adaptadas a melodías conocidas o proponer estructuras originales que refuercen los valores y mensajes de la compañía.",
+              outputEsperado: "Letra completa con indicaciones de ritmo/melodía sugerida, más 2-3 variantes del estribillo para elegir.",
+              herramientas: [
+                {
+                  nombre: "Microsoft Copilot",
+                  icono: "🚀",
+                  descripcion: "Para generar letras creativas adaptadas al briefing corporativo.",
+                  pasos: [
+                    "Define el briefing creativo (objetivo, público, tono, valores)",
+                    "Especifica si debe adaptarse a una melodía conocida",
+                    "Genera varias versiones de la letra",
+                    "Itera y refina según feedback",
+                    "Prueba con el equipo antes de producir"
+                  ]
+                }
+              ],
+              prompts: [
+                {
+                  titulo: "Prompt para crear jingle corporativo",
+                  contenido: `Actúa como compositor creativo especializado en comunicación corporativa. Crea una canción/jingle que:
+
+BRIEFING CREATIVO:
+• Objetivo: [motivacional, celebración, bienvenida, campaña específica]
+• Público: [nuevos empleados, toda la plantilla, evento concreto]
+• Tono: [inspirador, divertido, emotivo, enérgico]
+• Valores a transmitir: compromiso, seguridad, equipo, innovación (cultura Prosegur)
+• Duración aproximada: [jingle corto 30-60 seg / canción completa 2-3 min]
+
+ESTRUCTURA DE LA CANCIÓN:
+1. Estrofa 1: Presentación del contexto o situación
+2. Estribillo: Mensaje central memorable y pegadizo
+3. Estrofa 2: Desarrollo con ejemplos o emociones
+4. Estribillo: Repetición con variación si procede
+5. Puente/Cierre: Llamada a la acción o mensaje final potente
+
+CRITERIOS:
+• Lenguaje inclusivo y positivo
+• Evitar clichés corporativos vacíos
+• Rima natural, no forzada
+• Métrica adaptable a melodías sencillas
+• Posibilidad de adaptar a diferentes idiomas del grupo
+
+Genera la letra completa con 2-3 variantes del estribillo.`
+                }
+              ],
+              tips: [
+                "Involucra a empleados en la selección de la versión final",
+                "Prueba la letra cantada antes de producir",
+                "Evita referencias que puedan quedar obsoletas",
+                "Considera versiones en varios idiomas desde el inicio",
+                "Usa herramientas externas de generación de audio si necesitas la melodía"
+              ]
+            }
+          ]
+        }
+      ],
+
+      herramientas: [
+        {
+          categoria: "Asistente Principal",
+          items: [
+            { nombre: "Microsoft Copilot", icono: "🚀", descripcion: "Asistente IA integrado en Microsoft 365 para todas las tareas" }
+          ]
+        },
+        {
+          categoria: "Integración Microsoft 365",
+          items: [
+            { nombre: "Copilot en Word", icono: "📄", descripcion: "Redacción y edición de documentos" },
+            { nombre: "Copilot en Excel", icono: "📊", descripcion: "Análisis de datos y visualizaciones" },
+            { nombre: "Copilot en PowerPoint", icono: "📽️", descripcion: "Creación de presentaciones" },
+            { nombre: "Copilot en Teams", icono: "💬", descripcion: "Resúmenes de reuniones y chat" },
+            { nombre: "Copilot en Outlook", icono: "📧", descripcion: "Gestión de correos y calendario" }
+          ]
+        },
+        {
+          categoria: "Productividad",
+          items: [
+            { nombre: "Copilot en OneNote", icono: "📓", descripcion: "Organización de notas e investigación" },
+            { nombre: "Copilot en Planner", icono: "✅", descripcion: "Gestión de tareas y proyectos" }
+          ]
+        }
+      ],
+
+      glosario: [
+        { termino: "Copilot", definicion: "Asistente de IA de Microsoft integrado en las aplicaciones de Microsoft 365 para ayudar en tareas de productividad." },
+        { termino: "LLM", definicion: "Large Language Model. Modelo de lenguaje de gran escala que puede entender y generar texto." },
+        { termino: "Prompt", definicion: "Instrucción o pregunta que se da a una IA para obtener una respuesta específica." },
+        { termino: "Microsoft 365", definicion: "Suite de aplicaciones de productividad de Microsoft que incluye Word, Excel, PowerPoint, Teams, Outlook, etc." },
+        { termino: "RAG", definicion: "Retrieval-Augmented Generation. Técnica que permite a la IA consultar documentos antes de responder." },
+        { termino: "Alucinación", definicion: "Cuando una IA genera información falsa pero presentada con confianza. Siempre verificar datos críticos." },
+        { termino: "Token", definicion: "Unidad básica de texto que procesa un LLM. Limita la cantidad de texto que puede procesar." },
+        { termino: "Grounding", definicion: "Proceso de conectar las respuestas de IA con datos reales y verificables de la empresa." },
+        { termino: "Graph", definicion: "Microsoft Graph permite a Copilot acceder a datos de tu organización de forma segura." },
+        { termino: "Chain of Thought", definicion: "Técnica de prompting que pide a la IA razonar paso a paso." }
+      ]
+    };
+
+    // Componentes de UI
+    const BottomNav = ({ activeTab, setActiveTab }) => (
+      <nav className="fixed bottom-0 left-0 right-0 bg-gray-900/95 backdrop-blur border-t border-gray-800 px-4 py-3 z-50">
+        <div className="max-w-lg mx-auto flex justify-around">
+          {[
+            { id: 'inicio', icon: '🏠', label: 'Inicio' },
+            { id: 'herramientas', icon: '🔧', label: 'Herramientas' },
+            { id: 'glosario', icon: '📚', label: 'Glosario' }
+          ].map(tab => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex flex-col items-center gap-1 px-4 py-1 rounded-lg transition-all ${
+                activeTab === tab.id ? 'text-cyan-400' : 'text-gray-500 hover:text-gray-300'
+              }`}
+            >
+              <span className="text-xl">{tab.icon}</span>
+              <span className="text-xs font-medium">{tab.label}</span>
+            </button>
+          ))}
+        </div>
+      </nav>
+    );
+
+    const Header = () => (
+      <header className="sticky top-0 z-50 bg-gradient-to-r from-slate-900 to-slate-800 border-b border-cyan-900/30 px-4 py-3">
+        <div className="max-w-lg mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="text-2xl">🛡️</span>
+            <h1 className="text-white font-semibold">{CONFIG.titulo} <span className="text-cyan-400">{CONFIG.subtitulo}</span></h1>
+          </div>
+          <span className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+            {CONFIG.duracion}
+          </span>
+        </div>
+      </header>
+    );
+
+    const HomeScreen = ({ onSelectFase }) => (
+      <div className="px-4 py-6 space-y-6">
+        <div className="text-center space-y-4">
+          <div className="text-6xl">{CONFIG.icono}</div>
+          <h2 className="text-2xl font-bold text-white">{CONFIG.titulo} para <span className="text-cyan-400">{CONFIG.subtitulo}</span></h2>
+          <p className="text-gray-400 text-sm">{CONFIG.descripcion}</p>
+        </div>
+
+        <div className="bg-slate-800/50 rounded-2xl p-4 border border-cyan-900/30">
+          <div className="flex justify-around">
+            {CONFIG.stats.map((stat, i) => (
+              <div key={i} className="text-center">
+                <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">{stat.valor}</div>
+                <div className="text-xs text-gray-500 mt-1">{stat.etiqueta}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="space-y-3">
+          <h3 className="text-gray-400 text-sm font-semibold tracking-wider">CASOS DE USO</h3>
+          {CONFIG.fases.map(fase => (
+            <button
+              key={fase.id}
+              onClick={() => onSelectFase(fase)}
+              className="w-full bg-slate-800/50 hover:bg-slate-800 border border-slate-700 rounded-xl p-4 flex items-center gap-4 transition-all group"
+            >
+              <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${fase.color} flex items-center justify-center text-2xl`}>{fase.icono}</div>
+              <div className="flex-1 text-left">
+                <div className="text-white font-semibold">{fase.titulo}</div>
+                <div className="text-gray-500 text-sm">{fase.dinamicas} casos · {fase.descripcion}</div>
+              </div>
+              <span className="text-gray-600 group-hover:text-gray-400 transition-colors text-xl">›</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+
+    const FaseScreen = ({ fase, onBack, onSelectDinamica }) => (
+      <div className="px-4 py-6 space-y-4">
+        <button onClick={onBack} className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-gray-400 hover:text-white text-xl">‹</button>
+        <div className="text-center space-y-2">
+          <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r ${fase.color} text-white`}>{fase.titulo.split(':')[0]}</span>
+          <h2 className="text-xl font-bold text-white">{fase.titulo.split(':')[1]}</h2>
+        </div>
+        <div className="space-y-3 mt-6">
+          {fase.contenido.map(dinamica => (
+            <button
+              key={dinamica.id}
+              onClick={() => onSelectDinamica(dinamica)}
+              className="w-full bg-slate-800/50 border border-slate-700 rounded-xl p-4 text-left hover:bg-slate-800 transition-all"
+            >
+              <div className="text-cyan-400 text-xs font-semibold mb-1">CASO {dinamica.id}</div>
+              <div className="text-white font-semibold">{dinamica.titulo}</div>
+              <div className="text-gray-500 text-sm mt-1">{dinamica.descripcionCorta}</div>
+              <div className="text-gray-600 text-xs mt-2">{dinamica.area}</div>
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+
+    const DinamicaScreen = ({ dinamica, onBack }) => {
+      const [activeTab, setActiveTab] = useState('herramientas');
+      const copyToClipboard = (text) => { navigator.clipboard.writeText(text); alert('¡Prompt copiado!'); };
+
+      return (
+        <div className="px-4 py-6 space-y-4 pb-24">
+          <button onClick={onBack} className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-gray-400 hover:text-white text-xl">‹</button>
+          <div>
+            <div className="text-cyan-400 text-xs font-semibold mb-1">CASO {dinamica.id}</div>
+            <h2 className="text-xl font-bold text-white">{dinamica.titulo}</h2>
+            <div className="text-gray-500 text-sm mt-1">{dinamica.area}</div>
+          </div>
+
+          <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-4">
+            <div className="flex items-center gap-2 text-amber-400 text-sm font-semibold mb-2"><span>📋</span> SITUACIÓN</div>
+            <p className="text-gray-300 text-sm leading-relaxed">{dinamica.situacion}</p>
+          </div>
+
+          <div className="bg-emerald-900/30 border border-emerald-700/50 rounded-xl p-4">
+            <div className="flex items-center gap-2 text-emerald-400 text-sm font-semibold mb-2"><span>✅</span> OUTPUT ESPERADO</div>
+            <p className="text-gray-300 text-sm leading-relaxed">{dinamica.outputEsperado}</p>
+          </div>
+
+          <div className="flex gap-2 flex-wrap">
+            {[
+              { id: 'herramientas', icon: '🔧', label: 'Herramientas' },
+              { id: 'prompts', icon: '💬', label: 'Prompts' },
+              { id: 'tips', icon: '💡', label: 'Tips Pro' }
+            ].map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                  activeTab === tab.id ? 'bg-cyan-500 text-white' : 'bg-slate-800 text-gray-400 hover:text-white'
+                }`}
+              >
+                <span>{tab.icon}</span> {tab.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="space-y-4">
+            {activeTab === 'herramientas' && dinamica.herramientas?.map((herr, i) => (
+              <div key={i} className="bg-slate-800/50 border border-slate-700 rounded-xl p-4">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-2xl">{herr.icono}</span>
+                  <span className="text-white font-semibold">{herr.nombre}</span>
+                </div>
+                <p className="text-gray-400 text-sm mb-4">{herr.descripcion}</p>
+                <div className="space-y-2">
+                  {herr.pasos?.map((paso, j) => (
+                    <div key={j} className="flex items-start gap-3">
+                      <span className="w-6 h-6 bg-cyan-500/20 text-cyan-400 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">{j + 1}</span>
+                      <span className="text-gray-300 text-sm">{paso}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+
+            {activeTab === 'prompts' && dinamica.prompts?.map((prompt, i) => (
+              <div key={i} className="bg-slate-800/50 border border-slate-700 rounded-xl p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-white font-semibold">{prompt.titulo}</span>
+                  <button onClick={() => copyToClipboard(prompt.contenido)} className="text-cyan-400 text-xs hover:text-cyan-300">📋 Copiar</button>
+                </div>
+                <pre className="bg-slate-900 rounded-lg p-3 text-gray-300 text-xs overflow-x-auto whitespace-pre-wrap">{prompt.contenido}</pre>
+              </div>
+            ))}
+
+            {activeTab === 'tips' && dinamica.tips && (
+              <div className="space-y-3">
+                {dinamica.tips.map((tip, i) => (
+                  <div key={i} className="flex items-start gap-3 bg-slate-800/30 rounded-lg p-3">
+                    <span className="text-yellow-400">💡</span>
+                    <span className="text-gray-300 text-sm">{tip}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    };
+
+    const HerramientasScreen = () => (
+      <div className="px-4 py-6 space-y-6 pb-24">
+        <div className="text-center">
+          <h2 className="text-xl font-bold text-white">🛠️ Herramientas IA</h2>
+          <p className="text-gray-500 text-sm mt-1">Microsoft Copilot en tu ecosistema</p>
+        </div>
+        {CONFIG.herramientas.map((categoria, i) => (
+          <div key={i} className="space-y-3">
+            <h3 className="text-gray-400 text-xs font-semibold tracking-wider">{categoria.categoria.toUpperCase()}</h3>
+            {categoria.items.map((herr, j) => (
+              <div key={j} className="bg-slate-800/50 border border-slate-700 rounded-xl p-4 flex items-center gap-4">
+                <span className="text-2xl">{herr.icono}</span>
+                <div>
+                  <div className="text-white font-semibold">{herr.nombre}</div>
+                  <div className="text-gray-500 text-sm">{herr.descripcion}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    );
+
+    const GlosarioScreen = () => (
+      <div className="px-4 py-6 space-y-4 pb-24">
+        <div className="text-center mb-6">
+          <h2 className="text-xl font-bold text-white">📚 Glosario</h2>
+          <p className="text-gray-500 text-sm mt-1">Términos clave de IA</p>
+        </div>
+        {CONFIG.glosario.map((item, i) => (
+          <div key={i} className="border-b border-slate-800 pb-4">
+            <dt className="text-cyan-400 font-semibold">{item.termino}</dt>
+            <dd className="text-gray-400 text-sm mt-1">{item.definicion}</dd>
+          </div>
+        ))}
+      </div>
+    );
+
+    function App() {
+      const [activeTab, setActiveTab] = useState('inicio');
+      const [selectedFase, setSelectedFase] = useState(null);
+      const [selectedDinamica, setSelectedDinamica] = useState(null);
+
+      const handleTabChange = (tab) => { setActiveTab(tab); setSelectedFase(null); setSelectedDinamica(null); };
+
+      return (
+        <div className="min-h-screen bg-slate-950 text-white pb-20">
+          <Header />
+          <main className="max-w-lg mx-auto">
+            {activeTab === 'inicio' && !selectedFase && !selectedDinamica && (
+              <HomeScreen onSelectFase={(fase) => { setSelectedFase(fase); setSelectedDinamica(null); }} />
+            )}
+            {activeTab === 'inicio' && selectedFase && !selectedDinamica && (
+              <FaseScreen fase={selectedFase} onBack={() => setSelectedFase(null)} onSelectDinamica={setSelectedDinamica} />
+            )}
+            {activeTab === 'inicio' && selectedDinamica && (
+              <DinamicaScreen dinamica={selectedDinamica} onBack={() => setSelectedDinamica(null)} />
+            )}
+            {activeTab === 'herramientas' && <HerramientasScreen />}
+            {activeTab === 'glosario' && <GlosarioScreen />}
+          </main>
+          <BottomNav activeTab={activeTab} setActiveTab={handleTabChange} />
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
